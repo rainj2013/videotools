@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Date:  17-07-15
  */
 @SpringBootApplication
-//@MapperScan("top.rainj2013.dao")
 public class Application {
     public static void main(String[] args){
         SpringApplication.run(Application.class, args);

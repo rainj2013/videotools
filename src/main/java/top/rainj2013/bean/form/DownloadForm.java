@@ -1,7 +1,9 @@
-package top.rainj2013.bean;
+package top.rainj2013.bean.form;
 
 /**
- * Created by yangyujian on 2017/7/15 20:37.
+ * Author:  rainj2013
+ * Email:  yangyujian25@gmail.com
+ * Date:  17-07-15
  */
 public class DownloadForm {
 
