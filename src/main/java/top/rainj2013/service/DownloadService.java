@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import top.rainj2013.bean.form.DownloadForm;
 
-import javax.validation.constraints.NotNull;
 import java.io.ByteArrayOutputStream;
 import java.util.Set;
 import java.util.concurrent.*;
