@@ -18,13 +18,13 @@ import java.util.Map;
  * Date:  17-07-15
  */
 @Controller
-@RequestMapping("/video")
+@RequestMapping("/videos")
 public class DownloadController {
 
     @Autowired
     private DownloadService downloadService;
 
-    @RequestMapping(value = "/download", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> download(@RequestBody DownloadForm form) {
         boolean status = downloadService.addDownloadTask(form);

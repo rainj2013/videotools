@@ -17,13 +17,13 @@ import java.util.List;
  * Date:  17-07-16
  */
 @Controller
-@RequestMapping("/video")
+@RequestMapping("/videos")
 public class PlayController {
 
     @Autowired
     private PlayService playService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     public List<String> videos() {
         return playService.getFileList();
