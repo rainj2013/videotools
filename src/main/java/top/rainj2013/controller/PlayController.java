@@ -32,11 +32,7 @@ public class PlayController {
     @RequestMapping(value = "/{video:.+}", method = RequestMethod.GET)
     public String play(@PathVariable String video, Model model) {
         model.addAttribute( "video", video);
-        if (video.endsWith("flv")) {
-            return "flvPlayer";
-        } else {
-            //TODO other type like mp4
-            return "";
-        }
+        model.addAttribute("type", video.substring(video.lastIndexOf(".")+1));
+        return "player";
     }
 }
