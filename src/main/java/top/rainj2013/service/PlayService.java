@@ -18,11 +18,22 @@ public class PlayService {
 
     @Value("${downloadPath}")
     private String downloadPath;
+    @Value("${fileSuffix}")
+    private String[] fileSuffix;
 
     public List<String> getFileList() {
         List<String> list = Lists.newArrayList();
         File downloadFolder = new File(downloadPath);
-        File[] files = downloadFolder.listFiles();
+        File[] files = downloadFolder.listFiles(file -> {
+            String filename = file.getName();
+            for (String suffix : fileSuffix) {
+                if (filename.endsWith(suffix)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
         if (null == files) {
             return list;
         }
