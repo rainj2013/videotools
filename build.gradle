@@ -2,7 +2,9 @@ group 'top.rainj2013'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-apply plugin: 'war'
+apply plugin: 'spring-boot'
+apply plugin: 'application'
+mainClassName = 'top.rainj2013.Application'
 
 sourceCompatibility = 1.8
 
