@@ -1,14 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>hello</title>
+    <!--/*@thymesVar id="video" type="java.lang.String"*/-->
+    <!--/*@thymesVar id="type" type="java.lang.String"*/-->
+    <title th:text="${#strings.substringBefore(video,'.'+type)}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/player.css" />
     <script src="/js/flv.min.js" />
 </head>
 <body>
-<!--/*@thymesVar id="video" type="java.lang.String"*/-->
 <!--/*@thymesVar id="type" type="java.lang.String"*/-->
+<!--/*@thymesVar id="video" type="java.lang.String"*/-->
 <input type="hidden" id="video" th:value="'/'+${video}"/>
 <input type="hidden" id="type" th:value="${type}"/>
 <video id="videoElement" controls="controls"></video>
