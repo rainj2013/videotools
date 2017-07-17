@@ -2,6 +2,8 @@ package top.rainj2013.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,5 +27,11 @@ public class PlayController {
     @ResponseBody
     public List<String> videos() {
         return playService.getFileList();
+    }
+
+    @RequestMapping(value = "/{video:.+}", method = RequestMethod.GET)
+    public String play(@PathVariable String video, Model model) {
+        model.addAttribute( "video", video);
+        return "videoPlayer";
     }
 }
