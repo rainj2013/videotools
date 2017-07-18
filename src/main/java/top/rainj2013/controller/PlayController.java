@@ -1,5 +1,6 @@
 package top.rainj2013.controller;
 
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import top.rainj2013.service.PlayService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author:  rainj2013
@@ -25,8 +27,11 @@ public class PlayController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
-    public List<String> videos() {
-        return playService.getFileList();
+    public Map<String, Object> videos(String token) {
+        Map<String, Object> result = Maps.newHashMap();
+        result.put("code", 1);
+        result.put("data", playService.getFileList());
+        return result;
     }
 
     @RequestMapping(value = "/{video:.+}", method = RequestMethod.GET)

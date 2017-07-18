@@ -26,7 +26,7 @@ public class DownloadController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> download(@RequestBody DownloadForm form) {
+    public Map<String, Object> download(@RequestBody DownloadForm form, String token) {
         boolean status = downloadService.addDownloadTask(form);
         Map<String, Object> result = Maps.newHashMap();
         if (status) {

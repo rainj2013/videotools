@@ -19,6 +19,7 @@ dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '22.0'
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '1.5.3.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '1.5.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '1.5.4.RELEASE'
 }
 
 buildscript {
