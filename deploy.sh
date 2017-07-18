@@ -1,4 +1,3 @@
-rm ./nohup.out
 git pull
 export SALT=your_salt
 export VIDEO_TOOLS_PASSWORD=your_password
