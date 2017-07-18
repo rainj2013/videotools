@@ -1,6 +1,6 @@
 package top.rainj2013.service;
 
-import org.assertj.core.util.Lists;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

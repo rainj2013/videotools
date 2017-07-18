@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.rainj2013.aop.LoginCheck;
 import top.rainj2013.bean.form.DownloadForm;
 import top.rainj2013.service.DownloadService;
 
@@ -26,6 +27,7 @@ public class DownloadController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
+    @LoginCheck
     public Map<String, Object> download(@RequestBody DownloadForm form, String token) {
         boolean status = downloadService.addDownloadTask(form);
         Map<String, Object> result = Maps.newHashMap();

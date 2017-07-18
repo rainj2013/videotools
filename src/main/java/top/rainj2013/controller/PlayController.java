@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.rainj2013.aop.LoginCheck;
 import top.rainj2013.service.PlayService;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +27,7 @@ public class PlayController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
+    @LoginCheck
     public Map<String, Object> videos(String token) {
         Map<String, Object> result = Maps.newHashMap();
         result.put("code", 1);

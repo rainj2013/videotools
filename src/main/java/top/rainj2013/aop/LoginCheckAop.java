@@ -15,7 +15,11 @@ import top.rainj2013.service.LoginCheckService;
 
 import java.lang.reflect.Method;
 import java.util.Map;
-
+/**
+ * Author:  rainj2013
+ * Email:  yangyujian25@gmail.com
+ * Date:  17-07-19
+ */
 @Aspect
 @Component
 public class LoginCheckAop {
