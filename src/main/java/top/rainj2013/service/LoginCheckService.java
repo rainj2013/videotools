@@ -29,8 +29,8 @@ public class LoginCheckService {
     static LoadingCache<String, String> tokenCache;
 
     static {
-        SALT = System.getProperty("SALT");
-        PASSWORD = System.getProperty("VIDEO_TOOLS_PASSWORD");
+        SALT = System.getenv("SALT");
+        PASSWORD = System.getenv("VIDEO_TOOLS_PASSWORD");
         tokenCache = CacheBuilder.newBuilder()
                 .expireAfterWrite(DURATION, TimeUnit.HOURS)
                 .maximumSize(1)
