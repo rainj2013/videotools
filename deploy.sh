@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 git pull
 ps -ef|grep videotools|grep -v grep|cut -c 9-15|xargs kill -9
 gradle build

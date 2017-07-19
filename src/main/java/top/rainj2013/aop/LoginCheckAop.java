@@ -51,6 +51,9 @@ public class LoginCheckAop {
         }
 
         Object[] args = joinPoint.getArgs();
+        if (args == null || args.length == 0) {
+            return failResult;
+        }
         String token = args[args.length - 1].toString();
         boolean isLogin = loginCheckService.check(token);
         if (!isLogin) {
@@ -65,9 +68,9 @@ public class LoginCheckAop {
     }
 
 
-    private Object proceed(ProceedingJoinPoint joinpoint, Object[] args) throws Exception {
+    private Object proceed(ProceedingJoinPoint joinPoint, Object[] args) throws Exception {
         try {
-            return joinpoint.proceed(args);
+            return joinPoint.proceed(args);
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
