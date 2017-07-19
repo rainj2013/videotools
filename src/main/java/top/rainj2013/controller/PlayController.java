@@ -1,6 +1,7 @@
 package top.rainj2013.controller;
 
 import com.google.common.collect.Maps;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ public class PlayController {
     @Autowired
     private PlayService playService;
 
+    @ApiOperation(value = "视频列表", notes = "已经下载的视频列表", httpMethod = "GET")
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     @LoginCheck
@@ -35,6 +37,7 @@ public class PlayController {
         return result;
     }
 
+    @ApiOperation(value = "视频播放页", notes = "播放视频页面", httpMethod = "GET")
     @RequestMapping(value = "/{video:.+}", method = RequestMethod.GET)
     public String play(@PathVariable String video, Model model) {
         model.addAttribute( "video", video);

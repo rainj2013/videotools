@@ -1,6 +1,7 @@
 package top.rainj2013.controller;
 
 import com.google.common.collect.Maps;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class SessionController {
     @Autowired
     private LoginCheckService loginCheckService;
 
+    @ApiOperation(value = "获取token", notes = "输入暗号，领取token一枚", httpMethod = "GET")
     @RequestMapping(value = "/session", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> session(String password) {
