@@ -37,7 +37,7 @@ public class LoginCheckAop {
 
         Map<String, Object> failResult = Maps.newHashMapWithExpectedSize(2);
         failResult.put("code", 0);
-        failResult.put("msg", "you do not have permission to access");
+        failResult.put("msg", "you do not have permission to access this resource");
 
         final MethodInvocationProceedingJoinPoint joinPoint = (MethodInvocationProceedingJoinPoint) proceedingJoinPoint;
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
@@ -54,7 +54,11 @@ public class LoginCheckAop {
         if (args == null || args.length == 0) {
             return failResult;
         }
-        String token = args[args.length - 1].toString();
+        Object lastArg = args[args.length - 1];
+        if (lastArg == null) {
+            return failResult;
+        }
+        String token = lastArg.toString();
         boolean isLogin = loginCheckService.check(token);
         if (!isLogin) {
             return failResult;
