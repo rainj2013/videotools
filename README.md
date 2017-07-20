@@ -1,6 +1,6 @@
 # videotools
 一个用于下载/处理/播放视频的程序
-本程序除了播放页外没有交互界面，请自觉使用postman或其他HttpClient工具进行交互（😅其实就是作者懒）
+本程序除了播放页外没有交互界面，请使用postman或其他HttpClient工具进行交互（😅其实就是作者懒）
 
 nginx/conf.d/videotools.conf
 ```
