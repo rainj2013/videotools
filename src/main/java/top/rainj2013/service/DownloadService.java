@@ -115,7 +115,12 @@ public class DownloadService implements InitializingBean{
         //init the download path
         File file = new File(downloadPath);
         if (!file.exists()) {
-            file.mkdirs();
+            boolean status = file.mkdirs();
+            if (status) {
+                LOGGER.info("init download path {} success!", downloadPath);
+            } else {
+                LOGGER.error("init download path {} fail, please check your permissions!", downloadPath);
+            }
         }
     }
 }
