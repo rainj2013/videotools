@@ -32,7 +32,7 @@ public class DownloadController {
     @ApiOperation(value = "下载视频", notes = "调用you-get/tget工具下载视频，支持多个主流视频网站和磁性链接", httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "form", value = "下载任务", required = true, dataType = "DownloadForm"),
-            @ApiImplicitParam(name = "token", value = "令牌", required = true, dataType = "String", paramType = "path")})
+            @ApiImplicitParam(name = "token", value = "令牌", required = true, dataType = "String", paramType = "query")})
     //swagger api config end
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
