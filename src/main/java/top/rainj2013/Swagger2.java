@@ -1,5 +1,6 @@
 package top.rainj2013;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -15,9 +16,12 @@ import top.rainj2013.bean.Constants;
 @Configuration
 @EnableSwagger2
 public class Swagger2 {
+    @Value("${host}")
+    private String host;
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .host(host)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("top.rainj2013.controller"))
