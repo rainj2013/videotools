@@ -7,11 +7,13 @@ import org.apache.commons.exec.ExecuteWatchdog;
 import org.apache.commons.exec.PumpStreamHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import top.rainj2013.bean.form.DownloadForm;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.Set;
 import java.util.concurrent.*;
 
@@ -21,7 +23,7 @@ import java.util.concurrent.*;
  * Date:  17-07-16
  */
 @Service
-public class DownloadService {
+public class DownloadService implements InitializingBean{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DownloadService.class);
 
@@ -30,7 +32,7 @@ public class DownloadService {
     private final static String MAGNET_LINK_PREFIX = "magnet:?xt";
     private final static String YOU_GET = "you-get";
     private final static String T_GET = "tget";
-    private final static Integer TIMEOUT = 60*30*1000;
+    private final static Integer TIMEOUT = 60 * 30 * 1000;
     private final static int INIT_CAPACITY = 5;
 
     private static final int corePoolSize = 1;
@@ -51,7 +53,7 @@ public class DownloadService {
         return true;
     }
 
-    private void downloadByYouGet(String url){
+    private void downloadByYouGet(String url) {
         CommandLine cmdLine = CommandLine.parse(YOU_GET);
         cmdLine.addArgument(url);
         cmdLine.addArgument("-o");
@@ -105,6 +107,15 @@ public class DownloadService {
             } else {
                 downloadByYouGet(url);
             }
+        }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        //init the download path
+        File file = new File(downloadPath);
+        if (!file.exists()) {
+            file.mkdirs();
         }
     }
 }
