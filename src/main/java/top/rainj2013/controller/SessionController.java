@@ -15,7 +15,7 @@ import top.rainj2013.service.LoginCheckService;
 import java.util.Map;
 
 @Controller
-@RequestMapping("videos")
+@RequestMapping("/videos")
 public class SessionController {
     @Autowired
     private LoginCheckService loginCheckService;
