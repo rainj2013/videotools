@@ -1,6 +1,7 @@
 package top.rainj2013.controller;
 
 import com.google.common.collect.Maps;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -21,6 +22,7 @@ import java.util.Map;
  * Email:  yangyujian25@gmail.com
  * Date:  17-07-16
  */
+@Api(tags = "/videos")
 @Controller
 @RequestMapping("/videos")
 public class PlayController {
@@ -29,7 +31,8 @@ public class PlayController {
     private PlayService playService;
 
     @ApiOperation(value = "视频列表", notes = "已经下载的视频列表", httpMethod = "GET")
-    @ApiImplicitParams(@ApiImplicitParam(name = "token",value = "令牌", required = true, paramType = "query"))
+    @ApiImplicitParams(@ApiImplicitParam(name = "token",value = "令牌", required = true, paramType = "query",
+            defaultValue = "please access /video/session and get a token first"))
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     @LoginCheck

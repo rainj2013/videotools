@@ -1,6 +1,7 @@
 package top.rainj2013.controller;
 
 import com.google.common.collect.Maps;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +15,7 @@ import top.rainj2013.service.LoginCheckService;
 
 import java.util.Map;
 
+@Api(tags = "/videos/session", description = "获取token")
 @Controller
 @RequestMapping("/videos")
 public class SessionController {
@@ -21,7 +23,8 @@ public class SessionController {
     private LoginCheckService loginCheckService;
 
     @ApiOperation(value = "获取token", notes = "输入暗号，领取token一枚", httpMethod = "GET")
-    @ApiImplicitParams(@ApiImplicitParam(name = "password",value = "密码", required = true, paramType = "query"))
+    @ApiImplicitParams(@ApiImplicitParam(name = "password",value = "密码", required = true, paramType = "query",
+            defaultValue = "please access /video/session and get a token first"))
     @RequestMapping(value = "/session", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> session(String password) {
