@@ -1,5 +1,6 @@
 package top.rainj2013.aop;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -25,6 +26,8 @@ import java.util.Map;
 public class LoginCheckAop {
     private final Logger logger = LoggerFactory.getLogger(LoginCheckAop.class);
 
+    private static final Map<String, Object> DEFAULT_FAIL_RESULT = Maps.newHashMapWithExpectedSize(2);
+
     @Autowired
     private LoginCheckService loginCheckService;
 
@@ -32,13 +35,13 @@ public class LoginCheckAop {
     public void point() {
     }
 
+    static {
+        DEFAULT_FAIL_RESULT.put("code", 0);
+        DEFAULT_FAIL_RESULT.put("msg", "you do not have permission to access this resource");
+    }
+
     @Around("point()")
     public Object dealLoginCheckAopAnnotation(ProceedingJoinPoint proceedingJoinPoint) {
-
-        Map<String, Object> failResult = Maps.newHashMapWithExpectedSize(2);
-        failResult.put("code", 0);
-        failResult.put("msg", "you do not have permission to access this resource");
-
         final MethodInvocationProceedingJoinPoint joinPoint = (MethodInvocationProceedingJoinPoint) proceedingJoinPoint;
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
@@ -48,6 +51,11 @@ public class LoginCheckAop {
         } catch (NoSuchMethodException e) {
             logger.error("method {} is not exist", method.getName(), e);
             return null;
+        }
+        LoginCheck loginCheck = method.getAnnotation(LoginCheck.class);
+        Object failResult = loginCheck.failResult();
+        if (Strings.isNullOrEmpty(failResult.toString())) {
+            failResult = DEFAULT_FAIL_RESULT;
         }
 
         Object[] args = joinPoint.getArgs();

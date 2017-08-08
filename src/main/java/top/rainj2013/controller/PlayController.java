@@ -45,7 +45,12 @@ public class PlayController {
 
     @ApiOperation(value = "视频播放页", notes = "播放视频页面", httpMethod = "GET", code = 302)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String play(@PathVariable Integer id, Model model) {
+    @LoginCheck(failResult = "player")
+    @ApiImplicitParams({@ApiImplicitParam(name = "id",value = "视频id", required = true, paramType = "query",
+            defaultValue = "video id"),
+            @ApiImplicitParam(name = "token",value = "令牌", required = true, paramType = "query",
+            defaultValue = "please access /video/session and get a token first")})
+    public String play(@PathVariable Integer id, Model model, String token) {
         String video = playService.getVideo(id);
         model.addAttribute( "video", video);
         model.addAttribute("type", video.substring(video.lastIndexOf(".")+1));

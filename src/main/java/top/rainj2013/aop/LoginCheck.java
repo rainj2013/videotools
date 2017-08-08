@@ -11,4 +11,6 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface LoginCheck {}
+public @interface LoginCheck {
+    String failResult() default "";
+}
