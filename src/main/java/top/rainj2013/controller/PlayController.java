@@ -39,13 +39,14 @@ public class PlayController {
     public Map<String, Object> videos(String token) {
         Map<String, Object> result = Maps.newHashMap();
         result.put("code", 1);
-        result.put("data", playService.getFileList());
+        result.put("data", playService.getVideos());
         return result;
     }
 
     @ApiOperation(value = "视频播放页", notes = "播放视频页面", httpMethod = "GET", code = 302)
-    @RequestMapping(value = "/{video:.+}", method = RequestMethod.GET)
-    public String play(@PathVariable String video, Model model) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String play(@PathVariable Integer id, Model model) {
+        String video = playService.getVideo(id);
         model.addAttribute( "video", video);
         model.addAttribute("type", video.substring(video.lastIndexOf(".")+1));
         return "player";
