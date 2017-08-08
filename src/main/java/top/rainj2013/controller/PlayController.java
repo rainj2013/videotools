@@ -54,10 +54,7 @@ public class PlayController {
             defaultValue = "please access /video/session and get a token first")})
     public String play(@PathVariable Integer id, Model model, String token) {
         String video = playService.getVideo(id);
-        if (Strings.isNullOrEmpty(video)) {
-            model.addAttribute(Constants.VIDEO, Constants.DEFAULT_VIDEO);
-            model.addAttribute(Constants.TYPE, Constants.DEFAULT_TYPE);
-        } else {
+        if (!Strings.isNullOrEmpty(video)) {
             model.addAttribute( Constants.VIDEO, video);
             model.addAttribute(Constants.TYPE, video.substring(video.lastIndexOf(Constants.POINT)+1));
         }
