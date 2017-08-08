@@ -24,7 +24,7 @@ public class SessionController {
 
     @ApiOperation(value = "获取token", notes = "输入暗号，领取token一枚", httpMethod = "GET")
     @ApiImplicitParams(@ApiImplicitParam(name = "password",value = "密码", required = true, paramType = "query",
-            defaultValue = "please access /video/session and get a token first"))
+            defaultValue = "please input your password"))
     @RequestMapping(value = "/session", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> session(String password) {
