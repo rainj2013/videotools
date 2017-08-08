@@ -10,4 +10,8 @@ public class Constants {
     public static final String POINT = ".";
     public static final String DEFAULT_VIDEO = "default.mp4";
     public static final String DEFAULT_TYPE = "mp4";
+    public static final String CODE = "code";
+    public static final String DATA = "data";
+    public static final String MSG = "msg";
+    public static final String TOKEN = "token";
 }

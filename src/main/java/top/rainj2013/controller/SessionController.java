@@ -31,12 +31,12 @@ public class SessionController {
         Map<String, Object> result = Maps.newHashMapWithExpectedSize(2);
         String token = loginCheckService.getToken(password);
         if (token.equals(Constants.INVALID_TOKEN)) {
-            result.put("code", 0);
-            result.put("msg", "Get token fail, please check your password.");
+            result.put(Constants.CODE, 0);
+            result.put(Constants.MSG, "Get token fail, please check your password.");
             return result;
         }
-        result.put("code", 1);
-        result.put("token", token);
+        result.put(Constants.CODE, 1);
+        result.put(Constants.TOKEN, token);
         return result;
     }
 }

@@ -40,8 +40,8 @@ public class PlayController {
     @LoginCheck
     public Map<String, Object> videos(String token) {
         Map<String, Object> result = Maps.newHashMap();
-        result.put("code", 1);
-        result.put("data", playService.getVideos());
+        result.put(Constants.CODE, 1);
+        result.put(Constants.DATA, playService.getVideos());
         return result;
     }
 
