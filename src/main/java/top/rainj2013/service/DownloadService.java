@@ -27,14 +27,14 @@ public class DownloadService implements InitializingBean{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DownloadService.class);
 
-    @Value("${downloadPath}")
+    @Value("${download.path}")
     private String downloadPath;
+    @Value("download.timeout")
+    private Integer TIMEOUT;
     private final static String MAGNET_LINK_PREFIX = "magnet:?xt";
     private final static String YOU_GET = "you-get";
     private final static String T_GET = "tget";
-    private final static Integer TIMEOUT = 60 * 30 * 1000;
     private final static int INIT_CAPACITY = 5;
-
     private static final int corePoolSize = 1;
     private static final int maxPoolSize = 1;
     private static final int keepAliveTime = 3;
