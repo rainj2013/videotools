@@ -1,11 +1,11 @@
 package top.rainj2013.service;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.util.List;
+import java.util.Map;
 
 /**
  * Author:  rainj2013
@@ -21,8 +21,13 @@ public class PlayService {
     @Value("${fileSuffix}")
     private String[] fileSuffix;
 
-    public List<String> getFileList() {
-        List<String> list = Lists.newArrayList();
+    private Map<Integer, String> videos = Maps.newConcurrentMap();
+
+    public String getVideo(Integer id) {
+        return videos.get(id);
+    }
+
+    public Map<Integer, String> getVideos() {
         File downloadFolder = new File(downloadPath);
         File[] files = downloadFolder.listFiles(file -> {
             String filename = file.getName();
@@ -35,11 +40,11 @@ public class PlayService {
         });
 
         if (null == files) {
-            return list;
+            return videos;
         }
-        for (File file : files) {
-            list.add(file.getName());
+        for (int index = 0; index < files.length; index++) {
+            videos.put(index, files[index].getName());
         }
-        return list;
+        return videos;
     }
 }

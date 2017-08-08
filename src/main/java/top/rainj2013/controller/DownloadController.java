@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.rainj2013.aop.LoginCheck;
+import top.rainj2013.bean.Constants;
 import top.rainj2013.bean.form.DownloadForm;
 import top.rainj2013.service.DownloadService;
 
@@ -42,11 +43,11 @@ public class DownloadController {
         boolean status = downloadService.addDownloadTask(form);
         Map<String, Object> result = Maps.newHashMap();
         if (status) {
-            result.put("code", 1);
-            result.put("msg", "Add a download task to the queue successfully.");
+            result.put(Constants.CODE, 1);
+            result.put(Constants.MSG, "Add a download task to the queue successfully.");
         } else {
-            result.put("code", 0);
-            result.put("msg", "The download task is already exist.");
+            result.put(Constants.CODE, 0);
+            result.put(Constants.MSG, "The download task is already exist.");
         }
         return result;
     }

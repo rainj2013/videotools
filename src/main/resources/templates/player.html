@@ -3,7 +3,7 @@
 <head>
     <!--/*@thymesVar id="video" type="java.lang.String"*/-->
     <!--/*@thymesVar id="type" type="java.lang.String"*/-->
-    <title th:text="${#strings.substringBefore(video,'.'+type)}"></title>
+    <title th:text="${#strings.substringBefore(video,'.'+type)}" th:if="${video!=null}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/player.css" />
     <script src="/js/flv.min.js" />
@@ -15,11 +15,16 @@
 <input type="hidden" id="type" th:value="${type}"/>
 <video id="videoElement" controls="controls"></video>
 <script>
+    var type = document.getElementById('type').value;
+    var url = document.getElementById('video').value;
+    if (url == "/null") {
+        alert("资源不存在或无权限访问！");
+    }
     if (flvjs.isSupported()) {
         var videoElement = document.getElementById('videoElement');
         var player = flvjs.createPlayer({
-            type: document.getElementById('type').value,
-            url: document.getElementById('video').value
+            type: type,
+            url: url
         });
         player.attachMediaElement(videoElement);
         player.load();
