@@ -38,7 +38,7 @@ public class LoginCheckService {
                     @Override
                     public String load(String key) throws Exception {
                         if (key.equals(PASSWORD)) {
-                            String pwdKey = DateTime.now()+SALT+PASSWORD;
+                            String pwdKey = DateTime.now().getMillis()+SALT+PASSWORD;
                             return DigestUtils.md5DigestAsHex(pwdKey.getBytes());
                         }
                         return Constants.INVALID_TOKEN;

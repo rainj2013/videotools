@@ -42,7 +42,7 @@ public class PlayService {
         if (null == files) {
             return videos;
         }
-        for (int index = 1; index <= files.length; index++) {
+        for (int index = 0; index < files.length; index++) {
             videos.put(index, files[index].getName());
         }
         return videos;
