@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class PlayServiceTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginCheckServiceTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PlayServiceTest.class);
 
     @Autowired
     private PlayService playService;

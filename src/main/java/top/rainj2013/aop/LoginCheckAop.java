@@ -24,7 +24,7 @@ import java.util.Map;
 @Aspect
 @Component
 public class LoginCheckAop {
-    private final Logger logger = LoggerFactory.getLogger(LoginCheckAop.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginCheckAop.class);
 
     private static final Map<String, Object> DEFAULT_FAIL_RESULT = Maps.newHashMapWithExpectedSize(2);
 
@@ -49,7 +49,7 @@ public class LoginCheckAop {
         try {
             method = target.getClass().getMethod(method.getName(), signature.getParameterTypes());
         } catch (NoSuchMethodException e) {
-            logger.error("method {} is not exist", method.getName(), e);
+            LOGGER.error("method {} is not exist", method.getName(), e);
             return null;
         }
         LoginCheck loginCheck = method.getAnnotation(LoginCheck.class);
@@ -74,7 +74,7 @@ public class LoginCheckAop {
         try {
             return proceed(joinPoint, args);
         } catch (Exception e) {
-            logger.error("process joinPoint error", e);
+            LOGGER.error("process joinPoint error", e);
             return failResult;
         }
     }
