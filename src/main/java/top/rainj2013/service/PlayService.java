@@ -16,9 +16,9 @@ import java.util.Map;
 @Service
 public class PlayService {
 
-    @Value("${downloadPath}")
+    @Value("${download.path}")
     private String downloadPath;
-    @Value("${fileSuffix}")
+    @Value("${file.suffix}")
     private String[] fileSuffix;
 
     private Map<Integer, String> videos = Maps.newConcurrentMap();
