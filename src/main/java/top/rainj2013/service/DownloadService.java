@@ -29,7 +29,7 @@ public class DownloadService implements InitializingBean {
 
     @Value("${download.path}")
     private String downloadPath;
-    @Value("download.timeout")
+    @Value("${download.timeout}")
     private Integer TIMEOUT;
     private final static String MAGNET_LINK_PREFIX = "magnet:?xt";
     private final static String YOU_GET = "you-get";
