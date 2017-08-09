@@ -40,7 +40,7 @@ public class DownloadService implements InitializingBean{
     private static final int keepAliveTime = 3;
 
     private ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime,
-            TimeUnit.MILLISECONDS, new PriorityBlockingQueue<>(INIT_CAPACITY));
+            TimeUnit.SECONDS, new PriorityBlockingQueue<>(INIT_CAPACITY));
 
     private static final Set<String> LINKS = Sets.newConcurrentHashSet();
 
