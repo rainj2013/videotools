@@ -24,7 +24,7 @@ import java.util.concurrent.*;
  * Date:  17-07-16
  */
 @Service
-public class DownloadService implements InitializingBean{
+public class DownloadService implements InitializingBean {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DownloadService.class);
 
@@ -113,15 +113,14 @@ public class DownloadService implements InitializingBean{
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        //init the download path
         File file = new File(downloadPath);
-        if (!file.exists()) {
-            boolean status = file.mkdirs();
-            if (status) {
-                LOGGER.info("init download path {} success!", downloadPath);
-            } else {
-                LOGGER.error("init download path {} fail, please check your permissions!", downloadPath);
-            }
+        if (file.exists()) {
+            return;
+        }
+        if (file.mkdirs()) {
+            LOGGER.info("init download path {} success!", downloadPath);
+        } else {
+            LOGGER.error("init download path {} fail, please check your permissions!", downloadPath);
         }
     }
 }
