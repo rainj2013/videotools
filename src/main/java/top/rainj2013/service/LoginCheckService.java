@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import top.rainj2013.bean.Constants;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -26,7 +28,7 @@ public class LoginCheckService {
     private static final String SALT;
     private static final String PASSWORD;
     private static final long DURATION = 2;
-    static LoadingCache<String, String> tokenCache;
+    private static LoadingCache<String, String> tokenCache;
 
     static {
         SALT = System.getenv("SALT");
@@ -36,7 +38,7 @@ public class LoginCheckService {
                 .maximumSize(1)
                 .build(new CacheLoader<String, String>() {
                     @Override
-                    public String load(String key) throws Exception {
+                    public String load(@ParametersAreNonnullByDefault String key) throws Exception {
                         if (key.equals(PASSWORD)) {
                             String pwdKey = DateTime.now().getMillis()+SALT+PASSWORD;
                             return DigestUtils.md5DigestAsHex(pwdKey.getBytes());
@@ -48,10 +50,7 @@ public class LoginCheckService {
 
     public boolean check(String token){
         Map<String, String> tokenMap = tokenCache.asMap();
-        if (tokenMap.values().contains(token)) {
-            return true;
-        }
-        return false;
+        return tokenMap.values().contains(token);
     }
 
     public String getToken(String password) {

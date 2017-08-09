@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import top.rainj2013.bean.form.DownloadForm;
 
+import javax.annotation.Nonnull;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Set;
@@ -96,7 +97,7 @@ public class DownloadService implements InitializingBean{
         }
 
         @Override
-        public int compareTo(DownloadTask o) {
+        public int compareTo(@Nonnull DownloadTask o) {
             return this.priority - o.priority;
         }
 
