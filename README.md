@@ -4,6 +4,9 @@
 请访问 http://rainj2013.top/swagger-ui.html#/  
 查看各HTTP服务API，亦可直接在该页面进行参数提交/获取资源  
 如果需要将本程序部署到您的机器，请注意在application.properties文件中配置您的域名
+下载功能依赖以下程序：
+you-get: https://github.com/soimort/you-get (从视频网站下载视频)
+t-get: https://github.com/jeffjose/tget (从磁性链接下载视频)
 
 nginx/conf.d/videotools.conf
 ```
