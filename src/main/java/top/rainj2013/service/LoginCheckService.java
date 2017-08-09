@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import top.rainj2013.bean.Constants;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -38,7 +37,8 @@ public class LoginCheckService {
                 .maximumSize(1)
                 .build(new CacheLoader<String, String>() {
                     @Override
-                    public String load(@ParametersAreNonnullByDefault String key) throws Exception {
+                    @ParametersAreNonnullByDefault
+                    public String load(String key) throws Exception {
                         if (key.equals(PASSWORD)) {
                             String pwdKey = DateTime.now().getMillis()+SALT+PASSWORD;
                             return DigestUtils.md5DigestAsHex(pwdKey.getBytes());
