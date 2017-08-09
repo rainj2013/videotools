@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class LoginCheckService {
-    private Logger logger = LoggerFactory.getLogger(LoginCheckService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginCheckService.class);
 
     private static final String SALT;
     private static final String PASSWORD;
@@ -57,7 +57,7 @@ public class LoginCheckService {
         try {
             return tokenCache.get(password);
         } catch (ExecutionException e) {
-            logger.error("get token error", e);
+            LOGGER.error("get token error", e);
             return Constants.INVALID_TOKEN;
         }
     }

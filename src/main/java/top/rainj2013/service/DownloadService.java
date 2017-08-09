@@ -25,7 +25,6 @@ import java.util.concurrent.*;
  */
 @Service
 public class DownloadService implements InitializingBean {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(DownloadService.class);
 
     @Value("${download.path}")
