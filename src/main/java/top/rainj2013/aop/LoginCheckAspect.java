@@ -23,8 +23,8 @@ import java.util.Map;
  */
 @Aspect
 @Component
-public class LoginCheckAop {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginCheckAop.class);
+public class LoginCheckAspect {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginCheckAspect.class);
 
     private static final Map<String, Object> DEFAULT_FAIL_RESULT = Maps.newHashMapWithExpectedSize(2);
 
@@ -32,8 +32,7 @@ public class LoginCheckAop {
     private LoginCheckService loginCheckService;
 
     @Pointcut("@annotation(top.rainj2013.aop.LoginCheck)")
-    public void point() {
-    }
+    public void point() {}
 
     static {
         DEFAULT_FAIL_RESULT.put("code", 0);
