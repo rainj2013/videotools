@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.rainj2013.bean.Constants;
+import top.rainj2013.utils.Constants;
 import top.rainj2013.service.LoginCheckService;
 
 import java.util.Map;
@@ -22,7 +22,7 @@ public class SessionController {
     @Autowired
     private LoginCheckService loginCheckService;
 
-    @ApiOperation(value = "获取token", notes = "输入暗号，领取token一枚", httpMethod = "GET")
+    @ApiOperation(value = "登录", notes = "输入暗号，获取登录会话一枚", httpMethod = "GET")
     @ApiImplicitParams(@ApiImplicitParam(name = "password",value = "密码", required = true, paramType = "query",
             defaultValue = "please input your password"))
     @RequestMapping(value = "/session", method = RequestMethod.GET)
@@ -36,7 +36,7 @@ public class SessionController {
             return result;
         }
         result.put(Constants.CODE, 1);
-        result.put(Constants.TOKEN, token);
+        result.put(Constants.MSG, "Login success!");
         return result;
     }
 }

@@ -8,7 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
-import top.rainj2013.bean.Constants;
+import top.rainj2013.utils.Constants;
+import top.rainj2013.utils.CookieUtils;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Map;
@@ -55,7 +56,9 @@ public class LoginCheckService {
 
     public String getToken(String password) {
         try {
-            return tokenCache.get(password);
+            String token = tokenCache.get(password);
+            CookieUtils.addCookie(Constants.TOKEN, token);
+            return token;
         } catch (ExecutionException e) {
             LOGGER.error("get token error", e);
             return Constants.INVALID_TOKEN;

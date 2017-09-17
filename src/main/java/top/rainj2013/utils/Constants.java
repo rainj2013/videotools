@@ -1,4 +1,4 @@
-package top.rainj2013.bean;
+package top.rainj2013.utils;
 
 public class Constants {
     public static final String INVALID_TOKEN = "invalid_token";

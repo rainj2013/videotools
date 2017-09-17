@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.rainj2013.aop.LoginCheck;
-import top.rainj2013.bean.Constants;
+import top.rainj2013.utils.Constants;
 import top.rainj2013.service.PlayService;
 
 import java.util.Map;
@@ -33,12 +33,10 @@ public class PlayController {
     private PlayService playService;
 
     @ApiOperation(value = "视频列表", notes = "已经下载的视频列表", httpMethod = "GET")
-    @ApiImplicitParams(@ApiImplicitParam(name = "token",value = "令牌", required = true, paramType = "query",
-            defaultValue = "please access /video/session and get a token first"))
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     @LoginCheck
-    public Map<String, Object> videos(String token) {
+    public Map<String, Object> videos() {
         Map<String, Object> result = Maps.newHashMap();
         result.put(Constants.CODE, 1);
         result.put(Constants.DATA, playService.getVideos());
@@ -49,10 +47,8 @@ public class PlayController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @LoginCheck(failResult = "player")
     @ApiImplicitParams({@ApiImplicitParam(name = "id",value = "视频id", required = true, paramType = "path",
-            defaultValue = "video id"),
-            @ApiImplicitParam(name = "token",value = "令牌", required = true, paramType = "query",
-            defaultValue = "please access /video/session and get a token first")})
-    public String play(@PathVariable Integer id, Model model, String token) {
+            defaultValue = "video id")})
+    public String play(@PathVariable Integer id, Model model) {
         String video = playService.getVideo(id);
         if (!Strings.isNullOrEmpty(video)) {
             model.addAttribute( Constants.VIDEO, video);

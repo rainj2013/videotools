@@ -12,7 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import top.rainj2013.utils.Constants;
 import top.rainj2013.service.LoginCheckService;
+import top.rainj2013.utils.CookieUtils;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -56,34 +58,16 @@ public class LoginCheckAspect {
         if (Strings.isNullOrEmpty(failResult.toString())) {
             failResult = DEFAULT_FAIL_RESULT;
         }
-
-        Object[] args = joinPoint.getArgs();
-        if (args == null || args.length == 0) {
-            return failResult;
-        }
-        Object lastArg = args[args.length - 1];
-        if (lastArg == null) {
-            return failResult;
-        }
-        String token = lastArg.toString();
+        String token = CookieUtils.getValue(Constants.TOKEN);
         boolean isLogin = loginCheckService.check(token);
         if (!isLogin) {
             return failResult;
         }
         try {
-            return proceed(joinPoint, args);
-        } catch (Exception e) {
+            return joinPoint.proceed(joinPoint.getArgs());
+        } catch (Throwable e) {
             LOGGER.error("process joinPoint error", e);
             return failResult;
-        }
-    }
-
-
-    private Object proceed(ProceedingJoinPoint joinPoint, Object[] args) throws Exception {
-        try {
-            return joinPoint.proceed(args);
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
         }
     }
 }
