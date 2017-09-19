@@ -10,18 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieUtils {
 
     public static String getValue(String name) {
+        String value = Constants.INVALID_TOKEN;
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest();
         Cookie[] cookies = request.getCookies();
-        String value = null;
+        if (cookies == null) {
+            return value;
+        }
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals(name)) {
                 value = cookie.getValue();
                 break;
             }
-        }
-        if (value == null) {
-            value = Constants.INVALID_TOKEN;
         }
         return value;
     }
