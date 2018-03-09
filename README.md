@@ -12,7 +12,7 @@ nginx/conf.d/videotools.conf
 ```
 server {
     listen       80;
-    server_name  rainj2013.top;
+    server_name  rainj2013.top videotools.rainj2013.top;
     
     location ~ \.(mkv|flv|mp4)$ {
         root  /usr/local/download;
