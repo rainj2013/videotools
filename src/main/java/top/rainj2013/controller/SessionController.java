@@ -19,8 +19,12 @@ import java.util.Map;
 @Controller
 @RequestMapping("/videos")
 public class SessionController {
+    private final LoginCheckService loginCheckService;
+
     @Autowired
-    private LoginCheckService loginCheckService;
+    public SessionController(LoginCheckService loginCheckService) {
+        this.loginCheckService = loginCheckService;
+    }
 
     @ApiOperation(value = "登录", notes = "输入暗号，获取登录会话一枚", httpMethod = "GET")
     @ApiImplicitParams(@ApiImplicitParam(name = "password",value = "密码", required = true, paramType = "query",

@@ -29,8 +29,12 @@ import java.util.Map;
 @RequestMapping("/videos")
 public class PlayController {
 
+    private final PlayService playService;
+
     @Autowired
-    private PlayService playService;
+    public PlayController(PlayService playService) {
+        this.playService = playService;
+    }
 
     @ApiOperation(value = "视频列表", notes = "已经下载的视频列表", httpMethod = "GET")
     @RequestMapping(value = "", method = RequestMethod.GET)

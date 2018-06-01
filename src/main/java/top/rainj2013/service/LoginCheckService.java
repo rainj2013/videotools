@@ -39,7 +39,7 @@ public class LoginCheckService {
                 .build(new CacheLoader<String, String>() {
                     @Override
                     @ParametersAreNonnullByDefault
-                    public String load(String key) throws Exception {
+                    public String load(String key) {
                         if (key.equals(PASSWORD)) {
                             String pwdKey = DateTime.now().getMillis()+SALT+PASSWORD;
                             return DigestUtils.md5DigestAsHex(pwdKey.getBytes());

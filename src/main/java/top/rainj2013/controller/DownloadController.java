@@ -25,8 +25,12 @@ import java.util.Map;
 @RequestMapping("/videos")
 public class DownloadController {
 
+    private final DownloadService downloadService;
+
     @Autowired
-    private DownloadService downloadService;
+    public DownloadController(DownloadService downloadService) {
+        this.downloadService = downloadService;
+    }
 
     //swagger api config start
     @ApiOperation(value = "下载视频", notes = "调用you-get/tget工具下载视频，支持多个主流视频网站和磁性链接", httpMethod = "POST")

@@ -111,7 +111,7 @@ public class DownloadService implements InitializingBean {
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         File file = new File(downloadPath);
         if (file.exists()) {
             return;
