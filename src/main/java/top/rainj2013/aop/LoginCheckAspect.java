@@ -30,8 +30,12 @@ public class LoginCheckAspect {
 
     private static final Map<String, Object> DEFAULT_FAIL_RESULT = Maps.newHashMapWithExpectedSize(2);
 
+    private final LoginCheckService loginCheckService;
+
     @Autowired
-    private LoginCheckService loginCheckService;
+    public LoginCheckAspect(LoginCheckService loginCheckService) {
+        this.loginCheckService = loginCheckService;
+    }
 
     @Pointcut("@annotation(top.rainj2013.aop.LoginCheck)")
     public void point() {}
